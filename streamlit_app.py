@@ -6,6 +6,7 @@ from stmol import showmol
 import py3Dmol
 import requests
 import biotite.structure.io as bsio
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
 
 #st.set_page_config(layout = 'wide')
 st.sidebar.title('🎈 ESMFold')
@@ -25,6 +26,7 @@ def render_mol(pdb):
 # Protein sequence input
 DEFAULT_SEQ = "MGSSHHHHHHSSGLVPRGSHMRGPNPTAASLEASAGPFTVRSFTVSRPSGYGAGTVYYPTNAGGTVGAIAIVPGYTARQSSIKWWGPRLASHGFVVITIDTNSTLDQPSSRSSQQMAALRQVASLNGTSSSPIYGKVDTARMGVMGWSMGGGGSLISAANNPSLKAAAPQAPWDSSTNFSSVTVPTLIFACENDSIAPVNSSALPIYDSMSRNAKQFLEINGGSHSCANSGNSNQALIGKKGVAWMKRFMDNDTRYSTFACENPNSTRVSDFRTANCSLEDPAANKARKEAELAAATAEQ"
 txt = st.sidebar.text_area('Input sequence', DEFAULT_SEQ, height=275)
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 # ESMfold
 def update(sequence=txt):
